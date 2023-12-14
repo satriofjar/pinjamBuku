@@ -1,0 +1,90 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-sm-9 col-md-7 mt-5 col-lg-5 mx-auto">
+      <div class="card border-0 shadow rounded-4 my-5">
+        <div class="card-body p-4 p-sm-5">
+
+          {% if page == 'login' %}
+          <h2 class="card-title text-center mb-2">SIGN IN</h2>
+
+
+          <form method="post">
+            {% csrf_token %}
+            
+            <div class="mb-3">
+              <label for="inputEmail1" class="form-label">Username</label>
+              <input type="text" class="form-control" id="inputEmail1" name="username">
+            </div>
+
+            <div class="mb-3">
+              <label for="inputPassword" class="form-label">Password</label>
+              <input type="password" class="form-control" id="inputPassword" name="password">
+            </div>
+
+            <ul>
+              {% for message in messages %}
+                <li id="messages" class="text-danger">{{message}}</li>
+              {% endfor %}
+            </ul>
+
+            
+            <div class="d-grid">
+              <button class="btn rounded-5 px-4 pb-2 bg-primary text-white" type="submit">Sign In</button>
+            </div>
+            
+          </form>
+
+          <p class="text-center mt-4">Do not have an account? <a href="{% url 'register' %}">Sign Up</a></p>
+          
+
+
+          {% else %}
+          <h2 class="card-title text-center mb-2">SIGN UP</h2>
+
+         <form method="post">
+          {% csrf_token %}
+          <div class="mb-3">
+            <label class="form-label">userame</label>
+            {{ form.username }}
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Email</label>
+            {{ form.email }}
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Password</label>
+            {{ form.password1 }}
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Confirm password</label>
+            {{ form.password2 }}
+          </div>
+
+
+          {% for message in messages %}
+              {{message}}
+          {% endfor %}
+
+          <div class="d-grid">
+            <button class="btn rounded-5 px-4 pb-2 bg-primary text-white" type="submit">Sign Up</button>
+          </div>
+
+         </form>
+         <p class="text-center mt-4">Have an account? <a href="{% url 'login' %}">Sign In</a></p>
+         <a href="{% url 'home' %}"><i class="bi bi-chevron-double-left"></i> Home</a>
+         
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

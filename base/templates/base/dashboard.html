@@ -1,0 +1,146 @@
+{% extends 'main.html' %}
+
+
+{% block content %}
+    {% include 'navbar.html' %}
+  <div class="container mb-5 pb-5">
+    <div class="text-center my-5">
+        <h2>Book List</h2>
+    </div>
+      <div>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Title</th>
+              <th>Author</th>
+              <th>Language</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="table-data">
+            {% for book in books %}
+
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ book.title }}</td>
+                    <td>{{ book.author }}</td>
+                    <td>{{ book.language }}</td>
+                    <td>
+                        <a href="{% url 'edit-book' book.id %}" class="btn bg-info text-white">Edit</a>
+                        <a href="{% url 'delete-book' book.id %}" class="btn bg-danger text-white">Delete</a>
+                    </td>
+                </tr>
+
+            {% endfor %}
+          </tbody>
+        </table>
+        <a href="{% url 'add-book' %}" class="btn bg-primary text-white mt-4">Add</a>
+      </div>
+
+
+    <div class="text-center my-5">
+        <h2>Book Rent</h2>
+    </div>
+
+    <div>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Title</th>
+              <th>Author</th>
+              <th>Language</th>
+              <th>User</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="table-data">
+            {% for rent in rents %}
+
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ rent.book.title }}</td>
+                    <td>{{ rent.book.author }}</td>
+                    <td>{{ rent.book.language }}</td>
+                    <td>{{ rent.user.username }}</td>
+                    <td>
+                        <a href="{% url 'return-book' rent.id %}" class="btn bg-warning text-white">Return</a>
+                    </td>
+                </tr>
+
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+    <div class="text-center my-5">
+        <h2>Users</h2>
+    </div>
+
+    <div>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Username</th>
+              <th>Email</th>
+              <th>Staf</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="table-data">
+            {% for user in users %}
+
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.is_staff }}</td>
+                    <td>
+                      {% if not user.is_staff %}
+                        <a href="{% url 'make-staff' user.id %}" class="btn bg-success text-white">Make a staf</a>
+                        {% else %}
+                        <a href="{% url 'demote-staff' user.id %}" class="btn bg-danger text-white">Demot</a>
+                      {% endif %}
+                    </td>
+                </tr>
+
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+
+    <div class="text-center my-5">
+        <h2>Message</h2>
+    </div>
+
+    <div>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Email</th>
+              <th>Subject</th>
+              <th>Message</th>
+            </tr>
+          </thead>
+          <tbody id="table-data">
+            {% for message in messages %}
+
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ message.email }}</td>
+                    <td>{{ message.subject }}</td>
+                    <td>{{ message.body }}</td>
+                </tr>
+
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+  </div>
+
+{% endblock content %}

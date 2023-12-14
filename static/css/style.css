@@ -1,0 +1,45 @@
+@import url("https://fonts.googleapis.com/css2?family=Basic&display=swap");
+
+body {
+  background-color: #f2f7f5;
+}
+
+.btn-yellow {
+  background-color: #faae2b;
+}
+
+.text-yellow {
+  color: #faae2b;
+}
+
+.text-green {
+  color: #00473e;
+}
+.bg-green {
+  background-color: #00473e;
+}
+.font-basic {
+  font-family: "Basic";
+  font-style: normal;
+}
+
+.font-worksans {
+  font-family: "Work Sans";
+  font-style: normal;
+}
+
+.news-sub {
+  font-weight: 300;
+  font-size: 20px;
+}
+
+.news-title {
+  font-weight: 300;
+  font-size: 70px;
+}
+
+
+
+.navbar .nav-item .nav-link{
+    font-size: 20px;
+}
